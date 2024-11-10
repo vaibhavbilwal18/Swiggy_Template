@@ -43,7 +43,8 @@
 - Server Side Routing
 
 # Dynamic Routing
-- 
+# Class
+- Super Class use 
 
 
 
