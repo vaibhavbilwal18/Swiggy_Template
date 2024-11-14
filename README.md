@@ -46,5 +46,14 @@
 # Class
 - Super Class use 
 
+# Custiem hooks
+# Online Status
+# Dynamic Bundling
+# Lazy Loading
+# Tailwind Css
+
+# Higher Order Component
+- 
+
 
 
