@@ -1,4 +1,4 @@
-import {lazy , Suspense } from "react";
+import {lazy , Suspense, useEffect, useState } from "react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import  Header from "./components/Header";
@@ -13,16 +13,36 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter , Outlet, RouterProvider} from "react-router-dom";
 // import Grocery from "./components/Grocery";
+import { useEffect ,  } from "react";
+import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 
  const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+
+  const [userInfo , setUserInfo] = useState();
+
+  useEffect(() =>{
+       const data = {
+        name: " Vaibhav Bilwal"
+       }
+       setUserInfo(data.name);
+  } , []);
+
     return (
+      // If you want only for perticuler section then we can wrap this with that part like header 
+      <Provider store={appStore}>
+      <UserContext.Provider value={{loggedInUser: userInfo , setUserInfo}}>
       <div className = "app">
        <Header/>
        <Outlet/>
       </div>
+      </UserContext.Provider>
+      </Provider>
     );
 };
 const appRouter = createBrowserRouter([
@@ -50,6 +70,10 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:resId",
         element : <RestaurantMenu/>
 
+      },
+      {
+        path: "/cart",
+        element : <Cart />
       }
     ],
     errorElement: <Error/>

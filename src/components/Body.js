@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext } from "react";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const {loggedInUser,setUserInfo } = useContext(UserContext);
+
 
   useEffect(() => {
     fetchData();
@@ -32,21 +35,16 @@ const Body = () => {
   if (!onlineStatus) {
     return <h1>You are offline. Please check your internet connection.</h1>;
   }
-
+  
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
       <div className="filter flex items-center">
-        <div className="search m-4 p-4">
-          <input
-            type="text"
-            className="search-box border-solid border-black"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
+        <div className="search m-4 p-4 ">
+        
           <button
-            className="px-2 bg-green-200 m-4 rounded-lg"
+            className="px-2 border border-black bg-green-200 m-4 rounded-lg"
             onClick={() => {
               const filtered = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -56,10 +54,24 @@ const Body = () => {
           >
             Search
           </button>
+          <input
+            type="text"
+            className="search-box border-solid border border-black rounded-lg"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
         </div>
-
+          <div className="search m-4 p-4 flex items-center">
+            <label 
+            className="px-2 border border-black bg-green-200 m-4 rounded-lg cursor-pointer">
+             User Name</label>
+         <input 
+         className="border border-black rounded-lg"
+         value={loggedInUser}
+         onChange={(e) => setUserInfo(e.target.value)} />
+         </div>
         <button
-          className="px-2 bg-gray-100 rounded-lg"
+          className="px-2 border border-black bg-green-200 m-4 rounded-lg"
           onClick={() => {
             const filtered = listOfRestaurants.filter(
               (res) => parseFloat(res.info.avgRatingString) > 4.5

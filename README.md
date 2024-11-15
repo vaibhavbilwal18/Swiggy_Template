@@ -53,7 +53,21 @@
 # Tailwind Css
 
 # Higher Order Component
-- 
+- Controle and Uncontrole Items
+- leafting State up 
 
+# Context
+-  Props Driling 
+- Context
+
+# Redux Step 
+- Install redux toolkit
+- redux-js
+- react-redux
+- Build Store 
+- connect the store to app
+- create the cart silces
+- dispatch action 
+- read the data by selector
 
 
