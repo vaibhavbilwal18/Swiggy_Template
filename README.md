@@ -71,3 +71,14 @@
 - read the data by selector
 
 
+# Type Of Testing
+- Unit Testing 
+- Integration Testing 
+- End to End Testing - e2e Testing
+
+# Steps
+- Install React testing 
+- Install jest
+- babel install
+- configure with add file babel.config.js
+- 
