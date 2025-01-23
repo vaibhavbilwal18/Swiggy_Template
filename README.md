@@ -1,4 +1,4 @@
-# Namste React 
+# React JS 
 
 # Parcel 
 - Dev Build
